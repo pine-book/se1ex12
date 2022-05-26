@@ -29,5 +29,32 @@ public class ProcurementControl {
   }
 
   // Declare and implement necessary methods
+  public ProcurementStaff getStaff(String staffCode){
+    ProcurementStaff ps = new ProcurementStaff(staffCode, dbAccess);
+    boolean status = ps.checkStaff();
+    if(!status)
+      ps = null;
+    return ps;
+  }
 
+  public Material getMaterial(String materialCode){
+    Material material = new Material(materialCode, dbAccess);
+    boolean status = material.checkMaterial();
+    if(!status)
+      material = null;
+    return material;
+  }
+
+  public Procurement getProcurement(String procurementId){
+    Procurement procurement = new Procurement(procurementId, dbAccess);
+    boolean status = procurement.checkProcurement();
+    if(!status)
+      procurement = null;
+    return procurement;
+  }
+
+  public boolean recordProcurement(String procurementId, String staffCode, String materialCode,Integer amount, Date requestedDate){
+    Procurement procurement = new Procurement(procurementId, staffCode, materialCode, amount, requestedDate, dbAccess);
+    return procurement.addProcurement();
+  }
 }

@@ -186,7 +186,8 @@ public class RecordProcurementPanel implements ActionListener {
       Integer amount, Date requestedDate) throws ClassNotFoundException, SQLException {
     // Define necessary variables
     ProcurementControl procurementControl = new ProcurementControl();
-   
+    ProcurementStaff procurementStaff = procurementControl.getStaff(staffCode);
+    Material material = procurementControl.getMaterial(materialCode);
 
     boolean status = false;
     String processStatusMessage=null;
@@ -194,7 +195,8 @@ public class RecordProcurementPanel implements ActionListener {
     String materialName = null;
 
     // Main process
-
+    staffName = procurementStaff.getName();
+    materialName = material.getName();
     // Finally, call method "show"
     show(staffName, materialName, processStatusMessage);
   }
