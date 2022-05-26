@@ -57,12 +57,4 @@ public class ProcurementControl {
     Procurement procurement = new Procurement(procurementId, staffCode, materialCode, amount, requestedDate, dbAccess);
     return procurement.addProcurement();
   }
-
-  public boolean recordDelivery(String procurementId, Date deliveryDate) {
-    Procurement procurement = getProcurement(procurementId);
-    procurement.setDeliveryDate(deliveryDate);
-    procurement.setProcurementStatus(procurement.getProcurementStatus());
-    boolean status = procurement.setDeliveryCompleted();
-    return status;
-  }
 }
